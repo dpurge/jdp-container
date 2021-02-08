@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+
+  hugo:
+    image: 'jdp/hugo'
+    command: hugo server --disableFastRender -D
+    ports:
+      - '8081:1313'
+    volumes:
+      - ./site:/var/hugo
+
+  # nginx:
+  #   image: 'jdp/nginx'
+  #   ports:
+  #     - '8080:80'
+  #   volumes:
+  #     - ./site/public:/usr/share/nginx/html
