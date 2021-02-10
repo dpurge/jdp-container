@@ -3,12 +3,12 @@ version: '3'
 services:
 
   hugo:
-    image: 'jdp/hugo'
+    image: 'dpurge/hugo'
     command: hugo server --disableFastRender -D
     ports:
-      - '8081:1313'
+      - '1313:1313'
     volumes:
-      - ./site:/var/hugo
+      - ./site:/site
 
   # nginx:
   #   image: 'jdp/nginx'
