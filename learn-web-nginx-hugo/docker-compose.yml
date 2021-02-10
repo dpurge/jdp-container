@@ -4,7 +4,7 @@ services:
 
   hugo:
     image: 'dpurge/hugo'
-    command: hugo server --disableFastRender -D
+    command: hugo server --baseUrl=localhost --bind="0.0.0.0"
     ports:
       - '8080:1313'
     volumes:
