@@ -1,9 +1,8 @@
+<!DOCTYPE html>
 <html>
-  <body>
-    <h1>Welcome!</h1>
-    
-    <h2>{{ .Title }}</h2>
-    {{ .Content }}
-
-  </body>
+<body>
+  {{- range first 10 .Data.Pages }}
+    <h4><a href="{{ .Permalink }}">{{ .Title }}</a></h4>
+  {{- end }}
+</body>
 </html>

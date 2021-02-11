@@ -4,15 +4,16 @@ services:
 
   hugo:
     image: 'dpurge/hugo'
-    command: hugo server --baseUrl=localhost --bind="0.0.0.0"
-    ports:
-      - '8080:1313'
+    # command: hugo server --baseUrl=localhost --bind="0.0.0.0" --disableFastRender --verbose
+    command: hugo --watch
     volumes:
       - ./site:/site
 
-  # nginx:
-  #   image: 'jdp/nginx'
-  #   ports:
-  #     - '8080:80'
-  #   volumes:
-  #     - ./site/public:/usr/share/nginx/html
+  nginx:
+    image: 'nginx'
+    depends_on:
+      - "hugo"
+    ports:
+      - '8080:80'
+    volumes:
+      - ./site/public:/usr/share/nginx/html

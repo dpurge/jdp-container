@@ -28,4 +28,4 @@ RUN mkdir -p "/tmp/${HUGO_DIR}" \
 WORKDIR "${HUGO_SITE}"
 
 EXPOSE 1313
-CMD ["hugo", "version"]
+CMD ["hugo", "--watch"]
