@@ -1,0 +1,4 @@
+theme = "dpurge"
+baseURL = "http://localhost:8080/"
+title = "DPurge site"
+languageCode = "en-us"

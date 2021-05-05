@@ -19,6 +19,6 @@ docker run -v ${PWD}:/var/hugo dpurge/hugo new theme dpurge
 Then add theme and content.
 
 ```powershell
-docker run -p 1313:1313 -v ${PWD}/site:/srv/hugo dpurge/hugo
-docker run -p 8080:80 -v ${PWD}/site/public:/usr/share/nginx/html dpurge/nginx
+docker run -v ${PWD}/site:/site dpurge/hugo
+docker run -p 8080:80 -v ${PWD}/site/public:/usr/share/nginx/html nginx
 ```

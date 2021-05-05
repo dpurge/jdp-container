@@ -1,4 +1,4 @@
-ARG ALPINE_VERSION="3.9"
+ARG ALPINE_VERSION="3.13"
 
 FROM alpine:${ALPINE_VERSION}
 
@@ -6,6 +6,7 @@ RUN apk add --update --no-cache libc6-compat libstdc++
 
 ARG HUGO_VERSION="0.80.0"
 
+ENV HUGO_RELEASES "https://github.com/gohugoio/hugo/releases"
 ENV HUGO_OS "Linux"
 ENV HUGO_ARCH "64bit"
 ENV HUGO_ARTIFACT "hugo_extended_${HUGO_VERSION}_${HUGO_OS}-${HUGO_ARCH}"
@@ -15,7 +16,7 @@ ENV HUGO_DIR "${HUGO_ARTIFACT}"
 ENV HUGO_BINARY "hugo"
 ENV HUGO_SITE "/site"
 
-ADD "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/${HUGO_ARCHIVE}" /tmp
+ADD "${HUGO_RELEASES}/download/v${HUGO_VERSION}/${HUGO_ARCHIVE}" /tmp
 
 RUN mkdir -p "/tmp/${HUGO_DIR}" \
     && tar zxf "/tmp/${HUGO_ARCHIVE}" -C "/tmp/${HUGO_DIR}" \
@@ -27,3 +28,4 @@ RUN mkdir -p "/tmp/${HUGO_DIR}" \
 WORKDIR "${HUGO_SITE}"
 
 EXPOSE 1313
+CMD ["hugo", "--watch"]
