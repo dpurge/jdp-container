@@ -1,0 +1,37 @@
+ARG UBUNTU_VERSION="20.04"
+
+FROM ubuntu:${UBUNTU_VERSION}
+
+MAINTAINER DPurge <david.purge@gmail.com>
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update \
+  && apt-get dist-upgrade \
+  && apt install --yes \
+    curl \
+    git \
+    i3 \
+    openssh-client \
+    rsync
+
+COPY ./src/i3/config /root/.i3/config
+
+RUN groupadd jdptools \
+  && mkdir -p /var/jdp-data \
+  && chown root:jdptools /var/jdp-data -R \
+  && chmod g+rwx /var/jdp-data -R
+  
+ENV HUGO_VERSION 0.80.0
+
+ADD https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_Linux-64bit.tar.gz /var/jdp-data
+  
+RUN cd /var/jdp-data/ \
+  && mkdir -p ./hugo/ \
+  && tar zxf ./hugo_extended_${HUGO_VERSION}_Linux-64bit.tar.gz -C ./hugo/ \
+  && rm -f ./hugo_extended_${HUGO_VERSION}_Linux-64bit.tar.gz \
+  && mv ./hugo/hugo /usr/bin/hugo \
+  && rm -rf ./hugo \
+  && useradd -m hugo
+  
+WORKDIR /var/jdp-data
