@@ -2,7 +2,7 @@ ARG UBUNTU_VERSION="20.04"
 
 FROM ubuntu:${UBUNTU_VERSION}
 
-MAINTAINER DPurge <david.purge@gmail.com>
+MAINTAINER dpurge
 
 ENV DEBIAN_FRONTEND=noninteractive
 
