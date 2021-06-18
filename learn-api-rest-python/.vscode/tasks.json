@@ -1,0 +1,36 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "type": "shell",
+    "problemMatcher": [],
+
+    "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+    },
+
+    "tasks": [
+        {
+            "label": "Build",
+            "command": "docker",
+            "args": ["build", "-t", "dpurge/learn_api_rest_python", "."],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Run",
+            "command": "docker",
+            "args": [ "run", "-p", "8080:8080", "dpurge/learn_api_rest_python"]
+        },
+        {
+            "label": "Start",
+            "command": "${config:python.pythonPath}",
+            "args": [ "src/__main__.py"]
+        }
+    ]
+}
