@@ -7,8 +7,9 @@ Docker image for build system for DPurge applications.
 Build and push to the registry:
 
 ```bash
-docker build -f Dockerfile -t jdpnas02:10001/jdp-jenkins:latest .
-docker push jdpnas02:10001/jdp-jenkins:latest
+docker build -f Dockerfile -t dpurge/jdp-jenkins:latest .
+# docker push jdpnas02:10001/jdp-jenkins:latest
+docker image save dpurge/jdp-jenkins -o jdp-jenkins_$(date +"%Y-%m-%d").tar
 ```
 
 Remove dangling images:
@@ -35,3 +36,4 @@ docker logs --follow jdp-jenkins
 
 docker image save jdpnas02:10001/jdp-jenkins -o jdp-jenkins.tar
 ```
+

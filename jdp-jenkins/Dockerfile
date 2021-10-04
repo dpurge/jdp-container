@@ -16,6 +16,7 @@ RUN apt-get update; \
 		default-jdk \
 		jenkins \
 		tini \
+		python3.8-venv \
 	; \
 	rm -rf /var/lib/apt/lists/*
 
